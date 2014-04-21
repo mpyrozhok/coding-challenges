@@ -1,0 +1,10 @@
+# -*- coding: utf-8 -*-
+import sys
+import os
+
+def main():
+    statinfo = os.stat(sys.argv[1])
+    print statinfo.st_size
+
+if __name__ == "__main__":
+    main()

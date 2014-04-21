@@ -1,0 +1,11 @@
+# -*- coding: utf-8 -*-
+import sys
+import itertools
+
+def main():
+    with open(sys.argv[1]) as f:
+        for line in f:
+            print " ".join("{0:.3f}".format(n) for n in sorted(itertools.imap(float, line.split())))
+
+if __name__ == "__main__":
+    main()

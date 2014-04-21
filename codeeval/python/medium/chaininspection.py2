@@ -1,0 +1,31 @@
+import sys
+
+
+def is_chain_valid(chain):
+    seen = set()
+    node = "BEGIN"
+    seen_nodes = 0
+    while node != "END":
+        node = chain.get(node, None)
+        if node is None or node in seen:
+            return False
+        seen.add(node)
+        seen_nodes += 1
+    return seen_nodes == len(chain)
+
+
+def str_to_chain(s):
+    pairs = (pair.split("-") for pair in s.split(";"))
+    return {h: t for [h, t] in pairs}
+
+
+def main():
+    if len(sys.argv) > 1:
+        with open(sys.argv[1]) as f:
+            for line in f:
+                valid = is_chain_valid(str_to_chain(line.rstrip()))
+                print "GOOD" if valid else "BAD"
+
+
+if __name__ == "__main__":
+    main()

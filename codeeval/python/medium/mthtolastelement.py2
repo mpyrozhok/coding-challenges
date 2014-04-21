@@ -1,0 +1,16 @@
+# -*- encoding: utf-8 -*-
+import sys
+
+
+def main():
+    with open(sys.argv[1]) as f:
+        for line in f:
+            symbols = line.split()
+            letters = symbols[:-1]
+            index = int(symbols[-1])
+            if index <= len(letters):
+                print letters[-index]
+
+
+if __name__ == "__main__":
+    main()

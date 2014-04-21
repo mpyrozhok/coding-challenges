@@ -1,0 +1,20 @@
+# -*- coding: utf-8 -*-
+import sys
+
+def fibonacci(n, memo):
+    if len(memo) >= n:
+        return memo[n]
+    else:
+        while len(memo) <= n:
+            memo.append(memo[-1] + memo[-2])
+        return memo[n]
+            
+
+def main():
+    memoized_numbers = [0, 1]
+    with open(sys.argv[1]) as f:
+        for line in f:
+            print fibonacci(int(line), memoized_numbers)
+
+if __name__ == "__main__":
+    main()

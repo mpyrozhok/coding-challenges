@@ -1,0 +1,44 @@
+# -*- coding: utf-8 -*-
+import sys
+
+def get_cycle_len(seq):
+    """
+    >>> get_cycle_len([3, 12, 1, 2, 5, 1, 2, 5])
+    3
+    >>> get_cycle_len([2, 0, 6, 3, 2, 0, 6, 3, 6, 3, 1])
+    4
+    """
+    t = 0
+    h = 1
+    l = len(seq)
+    while h < l and seq[t] != seq[h]:
+        t += 1
+        h = t * 2 + 1
+    return h - t
+        
+
+def get_cycle(seq):
+    """
+    >>> get_cycle([2, 0, 6, 3, 1, 6, 3, 1, 6, 3, 1])
+    [6, 3, 1]
+    >>> get_cycle([2, 0, 6, 3, 2, 0, 6, 3, 6, 3, 1])
+    [2, 0, 6, 3]
+
+    """
+    t = 0
+    h = get_cycle_len(seq)
+    l = len(seq)
+    while h < l and seq[t] != seq[h]:
+        t += 1
+        h += 1
+    return seq[t: h]
+
+def main():
+    with open(sys.argv[1]) as f:
+        for line in f:
+            numbers = map(int, line.split())
+            cycle = get_cycle(numbers)
+            print(" ".join(map(str, cycle)))
+
+if __name__ == "__main__":
+    main()

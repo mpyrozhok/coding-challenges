@@ -1,0 +1,10 @@
+# -*- encoding: utf-8 -*-
+import sys
+
+
+def main():
+    print "LittleEndian" if sys.byteorder == "little" else "BigEndian"
+
+
+if __name__ == "__main__":
+    main()

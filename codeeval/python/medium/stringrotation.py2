@@ -1,0 +1,29 @@
+import sys
+
+
+def is_rotated(source, target):
+    """
+    >>> is_rotated("lloHe", "Hello")
+    True
+    >>> is_rotated("tBasefon", "Basefont")
+    True
+    >>> is_rotated("Basefon", "Basefont")
+    False
+    """
+    head = target[0]
+    for i, l in enumerate(source):
+        if head == l:
+            wraparound = source[i:] + source[:i]
+            if wraparound == target:
+                return True
+    return False
+
+
+def main():
+    with open(sys.argv[1]) as f:
+        for line in f:
+            target, source = line.rstrip().split(",")
+            print is_rotated(source, target)
+
+if __name__ == "__main__":
+    main()

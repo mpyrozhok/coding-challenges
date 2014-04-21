@@ -1,0 +1,14 @@
+# -*- encoding: utf-8 -*-
+import itertools
+import sys
+
+
+def main():
+    with open(sys.argv[1]) as f:
+        for line in f:
+            source_line, characters = line.split(",")
+            characters = characters.strip()
+            print source_line.translate(None, characters)
+
+if __name__ == "__main__":
+    main()

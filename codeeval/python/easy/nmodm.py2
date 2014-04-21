@@ -1,0 +1,16 @@
+# -*- coding: utf-8 -*-
+import sys
+import itertools
+
+def mod(n, m):
+    return n - m * (n / m)
+
+def main():
+    with open(sys.argv[1]) as f:
+        for line in f:
+            n, m = itertools.imap(int, line.split(','))
+            print mod(n, m)
+
+
+if __name__ == "__main__":
+    main()

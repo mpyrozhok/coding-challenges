@@ -1,0 +1,19 @@
+# -*- coding: utf-8 -*-
+import sys
+
+def get_next_multiple(x, n):
+    next = n
+    while next & x > 0:
+        next = next << 1
+    return next
+    
+
+def main():
+    with open(sys.argv[1]) as f:
+        for line in f:
+            x, n = map(int, line.split(','))
+            print get_next_multiple(x, n)
+
+
+if __name__ == "__main__":
+    main()

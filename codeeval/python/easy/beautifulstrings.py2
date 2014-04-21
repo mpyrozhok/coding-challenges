@@ -1,0 +1,32 @@
+# -*- coding: utf-8 -*-
+import sys
+from string import punctuation
+from collections import Counter
+import itertools
+
+
+def normalize(n):
+    remove_symbols = punctuation + ' '
+    return n.rstrip().translate(None, remove_symbols).lower()
+
+
+def get_letter_frequencies(s):
+    frequencies = {}
+    for c in s:
+        frequencies[c] = frequencies.get(c, 0)
+        frequencies[c] += 1
+    return frequencies
+
+
+def get_maximum_beauty(s):
+    c = Counter(get_letter_frequencies(s))
+    return sum(e[0][1] * e[1] for e in itertools.izip(c.most_common(), xrange(26, 0, -1)))
+
+
+def main():
+    with open(sys.argv[1]) as f:
+        for line in f:
+            print get_maximum_beauty(normalize(line))
+
+if __name__ == "__main__":
+    main()

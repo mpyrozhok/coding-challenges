@@ -1,0 +1,25 @@
+import sys
+from collections import Counter
+import operator
+
+
+def major_element(elements):
+    c = dict()
+    l = 0
+    for e in elements:
+        c[e] = c.get(e, 0) + 1
+        l += 1
+    mode = max(c.iteritems(), key=operator.itemgetter(1))
+    return mode[0] if mode[1] > (l / 2) else None
+
+
+def main():
+    if len(sys.argv) > 1:
+        with open(sys.argv[1]) as f:
+            for line in f:
+                elements = line.rstrip().split(",")
+                print major_element(elements)
+
+
+if __name__ == "__main__":
+    main()

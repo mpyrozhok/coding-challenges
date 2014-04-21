@@ -1,0 +1,24 @@
+# -*- coding: utf-8 -*-
+import sys
+import string
+
+def is_self_describing(n):
+    digit_count = {}
+    str_n = str(n)
+    for d in str_n:
+        digit_count[d] = digit_count.get(d, 0)
+        digit_count[d] += 1
+    for i, c in enumerate(str_n):
+        count = digit_count.get(str(i), 0)
+        if int(c) != count:
+            return 0
+    return 1
+
+def main():
+    with open(sys.argv[1]) as f:
+        for line in f:
+            print is_self_describing(line.strip())
+
+
+if __name__ == "__main__":
+    main()

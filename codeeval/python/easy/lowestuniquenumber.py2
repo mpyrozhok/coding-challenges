@@ -1,0 +1,40 @@
+# -*- coding: utf-8 -*-
+import sys
+
+
+def take_first_matching(predicate, sequence, to_match):
+    """
+    >>> take_first_matching(lambda x, v: x == v, [1, 2, 3], 3)
+    (2, 3)
+    """
+    result = None
+    for i, e in enumerate(sequence):
+        if predicate(e, to_match):
+            result = (i, e)
+    return result
+
+def get_lowest_unique_num(numbers):
+    """
+    >>> get_lowest_unique_num([3, 3, 9, 1, 6, 5, 8, 1, 5, 3])
+    5
+    """
+    freq = dict()
+    for n in numbers:
+        freq[n] = freq.get(n, 0)
+        freq[n] += 1
+    unique = [k for k, q in freq.items() if q == 1]
+    if unique:
+        min_unique = min(unique)
+    else:
+        return 0
+    return take_first_matching(lambda x, y: x == y, numbers, min_unique)[0] + 1
+
+def main():
+    with open(sys.argv[1]) as f:
+        for line in f:
+            numbers = map(int, line.split())
+            print(get_lowest_unique_num(numbers))
+                
+
+if __name__ == "__main__":
+    main()

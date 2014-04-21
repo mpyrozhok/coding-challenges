@@ -1,0 +1,14 @@
+# -*- coding: utf-8 -*-
+import sys
+import itertools
+
+
+def main():
+    with open(sys.argv[1]) as f:
+        for line in f:
+            a, b = itertools.imap(set, (s.split(',') for s in line.split(';')))
+            print ",".join(a.intersection(b))
+
+
+if __name__ == "__main__":
+    main()

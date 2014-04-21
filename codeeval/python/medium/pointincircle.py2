@@ -1,0 +1,30 @@
+import sys
+import math
+
+
+def is_in_circle(point, center, radius):
+    x, y = point
+    cx, cy = center
+    distance = math.sqrt((x - cx) ** 2 + (y - cy) ** 2)
+    return "true" if distance <= radius else "false"
+
+
+def str_to_tuple(s):
+    return map(float, s.split(":")[1].strip(" ()").split(","))
+
+
+def str_to_float(s):
+    return float(s.split(":")[1])
+
+
+def main():
+    with open(sys.argv[1]) as f:
+        for line in f:
+            fields = line.rstrip().split(";")
+            center, radius, point = (str_to_tuple(fields[0]),
+                                     str_to_float(fields[1]),
+                                     str_to_tuple(fields[2]))
+            print is_in_circle(point, center, radius)
+
+if __name__ == "__main__":
+    main()

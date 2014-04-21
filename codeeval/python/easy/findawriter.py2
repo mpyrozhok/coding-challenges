@@ -1,0 +1,12 @@
+# -*- coding: utf-8 -*-
+import sys
+
+
+def main():
+    with open(sys.argv[1]) as f:
+        for line in f:
+            notebook, key = line.split("|")
+            print "".join(notebook[int(c) - 1] for c in key.split())
+
+if __name__ == "__main__":
+    main()

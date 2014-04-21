@@ -1,0 +1,18 @@
+# -*- coding: utf-8 -*-
+import sys
+
+def are_the_same_bits(n, pos1, pos2):
+    is_bit1_set = n & (1 << pos1 - 1) > 0
+    is_bit2_set = n & (1 << pos2 - 1) > 0
+    return "false" if is_bit1_set ^ is_bit2_set  else "true"
+    
+
+def main():
+    with open(sys.argv[1]) as f:
+        for line in f:
+            n, pos1, pos2 = map(int, line.split(','))
+            print are_the_same_bits(n, pos1, pos2)
+
+
+if __name__ == "__main__":
+    main()

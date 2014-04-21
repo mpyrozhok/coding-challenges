@@ -1,0 +1,13 @@
+# -*- coding: utf-8 -*-
+import sys
+import json
+
+
+def main():
+    with open(sys.argv[1]) as f:
+        for line in f:
+            j = json.loads(line)
+            print(sum([int(r['id']) for r in j['menu']['items'] if (r and r.has_key('label'))]))
+
+if __name__ == "__main__":
+    main()

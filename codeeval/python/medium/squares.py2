@@ -1,0 +1,40 @@
+# -*- coding: utf-8 -*-
+import sys
+
+
+def get_vectors(p):
+    return ((p[0][0] - p[1][0], p[0][1] - p[1][1]),
+            (p[0][0] - p[2][0], p[0][1] - p[2][1]),
+            (p[0][0] - p[3][0], p[0][1] - p[3][1]))
+
+
+def rotate_vector(v):
+    return (-v[1], v[0])
+
+
+def add_vectors(v1, v2):
+    return (v1[0] + v2[0], v1[1] + v2[1])
+
+
+def is_square(vs):
+    result = False
+    r_vs0 = rotate_vector(vs[0])
+    r_vs1 = rotate_vector(vs[1])
+    r_vs2 = rotate_vector(vs[2])
+    if vs[0] == r_vs1 or vs[1] == r_vs0:
+        result = add_vectors(vs[0], vs[1]) == vs[2]
+    elif vs[0] == r_vs2 or vs[2] == r_vs0:
+        result = add_vectors(vs[0], vs[2]) == vs[1]
+    elif vs[1] == r_vs2 or vs[2] == r_vs1:
+        result = add_vectors(vs[1], vs[2]) == vs[0]
+    return result
+
+
+def main():
+    with open(sys.argv[1], 'r') as f:
+        for line in f:
+            print "true" if is_square(get_vectors(eval(line))) else "false"
+
+
+if __name__ == "__main__":
+    main()

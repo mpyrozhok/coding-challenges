@@ -1,0 +1,11 @@
+# -*- coding: utf-8 -*-
+import sys
+
+
+def main():
+    with open(sys.argv[1]) as f:
+        for line in f:
+            print 1 if int(line) % 2 == 0 else 0
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,55 @@
+# -*- coding: utf-8 -*-
+import sys
+import itertools
+
+def set_row(board, row, v):
+    for i in xrange(len(board)):
+        board[row][i] = v
+
+def set_col(board, col, v):
+    for j in xrange(len(board)):
+        board[j][col] = v
+
+def query_row(board, row):
+    return sum(board[row])
+
+def query_col(board, col):
+    """
+    >>> board = [[1, 2], [3, 2]]
+    >>> query_col(board, 1)
+    4
+    """
+    s = 0
+    for i in xrange(len(board)):
+        s += board[i][col]
+    return s
+
+def exec_command(board, line):
+    fields = line.split() 
+    cmd = fields[0]
+    op1 = int(fields[1])
+    if len(fields) == 2:
+        if cmd == "QueryRow":
+            print query_row(board, op1)
+        else:
+            print query_col(board, op1)
+            
+    else:
+        op2 = int(fields[2])
+        if cmd == "SetCol":
+            set_col(board, op1, op2)
+        else:
+            set_row(board, op1, op2)
+
+
+def main():
+    board = []
+    for i in xrange(256):
+        board.append(list(itertools.repeat(0, 256)))
+            
+    with open(sys.argv[1]) as f:
+        for line in f:
+            exec_command(board, line)
+
+if __name__ == "__main__":
+    main()

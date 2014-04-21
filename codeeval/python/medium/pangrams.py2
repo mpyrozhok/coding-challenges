@@ -1,0 +1,17 @@
+# -*- coding: utf-8 -*-
+import sys
+
+alphabet = "abcdefghijklmnopqrstuvwxyz"
+
+
+def get_lacking_letters(line):
+    lacking = [c for c in alphabet if c not in line]
+    return "".join(lacking) if lacking else "NULL"
+
+def main():
+    with open(sys.argv[1]) as f:
+        for line in f:
+            print(get_lacking_letters(line.lower()))
+
+if __name__ == "__main__":
+    main()

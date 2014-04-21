@@ -1,0 +1,19 @@
+# -*- coding: utf-8 -*-
+import sys
+import string
+
+def is_happy_number(n):
+    seen_numbers = set()
+    while n not in seen_numbers and n != 1:
+        seen_numbers.add(n)
+        n = sum(int(c) ** 2 for c in str(n))
+    return 1 if n == 1 else 0
+
+def main():
+    with open(sys.argv[1]) as f:
+        for line in f:
+            print is_happy_number(int(line))
+
+
+if __name__ == "__main__":
+    main()

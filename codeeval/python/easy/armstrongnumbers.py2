@@ -1,0 +1,15 @@
+# -*- coding: utf-8 -*-
+import sys
+
+def is_armstrong_number(n):
+    power = len(n)
+    return sum(int(c)**power for c in n) == int(n)
+
+def main():
+    with open(sys.argv[1]) as f:
+        for line in f:
+            print is_armstrong_number(line.rstrip())
+
+
+if __name__ == "__main__":
+    main()

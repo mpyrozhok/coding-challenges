@@ -1,0 +1,30 @@
+# -*- coding: utf-8 -*-
+import sys
+import math
+import string
+
+class Stack:
+    
+    def __init__(self):
+        self.container = []
+
+    def push(self, n):
+        self.container.append(n)
+
+    def pop(self, n):
+        return self.container.pop()
+
+    def get_alternate(self):
+        return self.container[::-2]
+
+
+def main():
+    with open(sys.argv[1]) as f:
+        for line in f:
+            s = Stack()
+            for n in line.split():
+                s.push(n)
+            print(" ".join(s.get_alternate()))
+
+if __name__ == "__main__":
+    main()
