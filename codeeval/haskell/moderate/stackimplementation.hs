@@ -9,10 +9,9 @@ push x (Stack xs) = Stack (x:xs)
 pop :: Stack -> (Int, Stack)
 pop (Stack (x:xs)) = (x, Stack xs) 
 
-main = do
-    getContents >>= putStr . unlines . map (unwords . map show . popAlternate . pushAll . map read . words) . lines
+main = getContents >>= putStr . unlines . map (unwords . map show . popAlternate . pushAll . map read . words) . lines
     where
-        pushAll = foldr (push) (Stack [])
+        pushAll = foldr push (Stack [])
 
         popAll :: Stack -> [Int] -> [Int]
         popAll (Stack []) res = res

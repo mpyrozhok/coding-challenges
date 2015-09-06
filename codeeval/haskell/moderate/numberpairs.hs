@@ -21,10 +21,9 @@ pairs (xs, s)
     where
         strPairs = findPair xs []
         findPair [_] ps = ps
-        findPair (n:ns) ps = findPair ns (ps ++ [(show n ++ "," ++ show e) | e <- ns, n + e == s])
+        findPair (n:ns) ps = findPair ns (ps ++ [show n ++ "," ++ show e | e <- ns, n + e == s])
 
 
-main = do
-    getContents >>= putStr . unlines . process . lines
+main = getContents >>= putStr . unlines . process . lines
     where
         process = map (pairs . getInput)

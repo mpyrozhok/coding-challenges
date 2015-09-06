@@ -15,10 +15,9 @@ combinations k xs = combinations' [] (reverse xs) ++ combinations' [] xs
         combinations' cs xs' = combinations' (cs ++ rowCombinations) (drop 1 xs')
             where
                 rowCombinations :: [[Int]]
-                rowCombinations = foldl (\x y -> (y:(pfx)):x) [] (drop l xs')
+                rowCombinations = foldl (\x y -> y:(pfx:x)) [] (drop l xs')
                 pfx = take l xs'
 
-main = do
-    getContents >>= putStr . unlines . process . lines
+main = getContents >>= putStr . unlines . process . lines
     where
         process = map (show . length . filter (==0) . map sum . combinations 4 . map read . splitOn ",")

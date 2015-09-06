@@ -23,8 +23,7 @@ getMinDistances = reverse . getMinDistanceLoop []
             rest = drop pointCount xs
     
 
-main = do
-    getContents >>= putStr . unlines . process . lines
+main = getContents >>= putStr . unlines . process . lines
     where
         process = map minValueToStr . getMinDistances . map (map read . words)
-        minValueToStr v = if v < maxDistance then (showGFloat (Just 4) v "") else "INFINITY"
+        minValueToStr v = if v < maxDistance then showGFloat (Just 4) v "" else "INFINITY"

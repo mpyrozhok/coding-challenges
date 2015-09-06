@@ -32,9 +32,8 @@ countTiles xs ys = countTiles' xs ys (tangent (last xs) (last ys)) 0
 extractNumbers :: String -> [[Double]]
 extractNumbers ns = map (map read . splitOn "," . noBrackets) . words $ ns
     where
-        noBrackets = filter (flip notElem "()")
+        noBrackets = filter (`notElem` "()")
 
-main = do
-    getContents >>= putStr . unlines . map (show . uncurry countTiles . toParams . extractNumbers) . lines
+main = getContents >>= putStr . unlines . map (show . uncurry countTiles . toParams . extractNumbers) . lines
     where
         toParams [xs, ys] = (xs, ys)

@@ -8,7 +8,6 @@ dst = "ynficwlbkuomxsevzpdrjgthaq" --
 transmap = fromList $ zip dst src
 
 trans :: String -> String
-trans word = map (\s -> transmap ! s) word
+trans = map (\s -> transmap ! s)
 
-main = do
-    getContents >>= putStr . unlines . map (unwords . map trans . words) . lines
+main = getContents >>= putStr . unlines . map (unwords . map trans . words) . lines

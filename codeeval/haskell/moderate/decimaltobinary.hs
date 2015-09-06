@@ -10,5 +10,4 @@ dec2bin x = map intToDigit $ toBinary x []
         toBinary :: Int -> [Int] -> [Int]
         toBinary n res = if n > 1 then toBinary (shiftR n 1) ((n .&. 1):res) else n:res
 
-main = do
-    getContents >>= putStr . unlines . map (dec2bin . read) . lines
+main = getContents >>= putStr . unlines . map (dec2bin . read) . lines

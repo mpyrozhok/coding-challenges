@@ -5,10 +5,9 @@ import Data.Char (toLower)
 
 alphabet = "abcdefghijklmnopqrstuvwxyz"
 
-missingCharacters xs = [x | x <- alphabet, notElem x (map toLower xs)]
+missingCharacters xs = [x | x <- alphabet, x `notElem` map toLower xs]
 
-main = do
-    getContents >>= putStr . unlines . map (process . missingCharacters) . lines
+main = getContents >>= putStr . unlines . map (process . missingCharacters) . lines
     where
         process :: String -> String
         process [] = "NULL"

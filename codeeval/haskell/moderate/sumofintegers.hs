@@ -5,8 +5,8 @@ import Data.List (inits, tails)
 
 main = do
     content <- getContents
-    let numbers = map (map read . splitOn (",")) . lines $ content
-    mapM_ print $ map (splice) $ numbers
+    let numbers = map (map read . splitOn ",") . lines $ content
+    mapM_ (print . map splice) numbers
     where
 --        sequences = map sum . filter (not $ null) . concat . tails . inits
 --        sequences = map maximum . map (map sum . filter (not . null) . inits) . filter (not . null) .tails

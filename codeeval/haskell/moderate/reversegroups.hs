@@ -12,14 +12,13 @@ import Data.List (intercalate)
 reverseByK :: [Int] -> Int -> [Int]
 reverseByK xs k = rev xs []
     where
-        rev remainder result = let group = take k remainder in if (length group) < k then result ++ remainder else rev (drop k remainder) (result ++ (reverse group))
+        rev remainder result = let group = take k remainder in if length group < k then result ++ remainder else rev (drop k remainder) (result ++ reverse group)
 
 split :: String -> ([Int], Int)
 split xs = (map read (splitOn "," nums), read k)
     where
         [nums, k] = splitOn ";" xs
 
-main = do
-    getContents >>= putStr . unlines . process . lines
+main = getContents >>= putStr . unlines . process . lines
     where
         process = map (intercalate "," . map show . uncurry reverseByK . split)

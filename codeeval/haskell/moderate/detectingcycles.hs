@@ -1,7 +1,7 @@
 module Main
     where
 
-import Data.Maybe (catMaybes)
+import Data.Maybe (mapMaybe)
 
 -- | 
 -- >>> getCycle ""
@@ -25,7 +25,7 @@ getCycle xs = cycleLength (drop 1 xs) (drop 2 xs) >>= getCycle
     where
         getCycle l = Just cyclicPart
             where
-                cyclicPart = map (fst) . take l $ dropWhile (\(a,b) -> a /= b) $ zip xs (drop l xs)
+                cyclicPart = map fst . take l $ dropWhile (uncurry (/=)) $ zip xs (drop l xs)
 
         cycleLength _ [] = Nothing
         cycleLength (t:ts) (h:hs) = if t == h then cycle else cycleLength ts (drop 1 hs)
@@ -34,7 +34,7 @@ getCycle xs = cycleLength (drop 1 xs) (drop 2 xs) >>= getCycle
 
 main = do
     content <- getContents
-    mapM_ putStrLn $ map (unwords) . catMaybes . map getCycle $ numbers content
+    mapM_ (putStrLn . unwords) ((mapMaybe getCycle) (numbers content))
     
     where
         numbers = map words . lines

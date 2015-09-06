@@ -2,8 +2,9 @@ module Main
     where
 
 import Data.List (sortBy)
+import Data.Function (on)
 
 main = do
     content <- getContents
-    let (lineCount:l) = lines content
-    mapM_ putStrLn $ take (read lineCount :: Int) $ reverse $ sortBy (\x y -> compare (length x) (length y)) l
+    let (lineCount : l) = lines content
+    mapM_ putStrLn $ take (read lineCount :: Int) $ sortBy (flip compare `on` length) l
